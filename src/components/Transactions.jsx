@@ -1,5 +1,5 @@
-import editImage from "../assets/images/edit.svg"
-import deleteImage from "../assets/images/delete.svg"
+import Transaction from "./Transaction";
+
 
 const Transactions = () => {
   return (
@@ -8,18 +8,7 @@ const Transactions = () => {
 
       <div className="container_of_list_of_transactions">
         <ul>
-          <li className="transaction income">
-            <p>Earned this month</p>
-            <div className="right">
-              <p>৳ 100</p>
-              <button className="link">
-                <img className="icon" src={editImage} />
-              </button>
-              <button className="link">
-                <img className="icon" src={deleteImage} />
-              </button>
-            </div>
-          </li>
+         <Transaction/>
         </ul>
       </div>
     </div>
