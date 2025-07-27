@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTransactions } from "../redux/features/transactions/transactionsSlice";
+import {
+  createTransactions,
+  updateTransactions,
+} from "../redux/features/transactions/transactionsSlice";
 
 const Form = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("");
-
+  const [editMode, setEditMode] = useState(false);
   const reset = () => {
     setAmount("");
     setName("");
@@ -25,11 +28,45 @@ const Form = () => {
     reset();
   };
   const { isLoading, isError } = useSelector((state) => state.transactions);
+  const handleCancelEdit = () => {
+    reset();
+    setEditMode(false);
+  };
+
+  const editing = useSelector((state) => state.transactions.editing);
+  useEffect(() => {
+    const { id, name, type, amount } = editing || {};
+    if (id) {
+      setEditMode(true);
+      setName(name);
+      setAmount(amount);
+      setType(type);
+    } else {
+      reset();
+      setEditMode(false);
+    }
+  }, [editing]);
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    dispatch(
+      updateTransactions({
+        id: editing?.id,
+        data: {
+          name: name,
+          amount: amount,
+          type: type,
+        },
+      })
+    );
+
+    reset();
+  };
+
   return (
     <div className="form">
       <h3>Add new transaction</h3>
 
-      <form onSubmit={handleCreate}>
+      <form onSubmit={editMode ? handleUpdate : handleCreate}>
         <div className="form-group">
           <label>Name</label>
           <input
@@ -81,10 +118,14 @@ const Form = () => {
         </div>
 
         <button disabled={isLoading} className="btn" type="submit">
-          Add Transaction
+          {editMode ? "Update Transaction" : "Add Transaction"}
         </button>
         {!isLoading && isError && <p className="error">An error occurred</p>}
-        <button className="btn cancel_edit">Cancel Edit</button>
+        {editMode && (
+          <button className="btn cancel_edit" onClick={handleCancelEdit}>
+            Cancel Edit
+          </button>
+        )}
       </form>
     </div>
   );

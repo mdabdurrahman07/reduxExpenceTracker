@@ -13,6 +13,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: "",
+  editing:{}
 };
 
 // declaring redux async Thunk
@@ -54,6 +55,14 @@ export const removeTransactions = createAsyncThunk(
 const transactionsSlice = createSlice({
   name: "transactions",
   initialState,
+  reducers:{
+    editActive: (state, action) =>{
+      state.editing = action.payload
+    },
+    editInActive: (state) =>{
+      state.editing = {}
+    }
+  },
   extraReducers: (builder) => {
     builder
     // fetchTransactions
@@ -128,5 +137,5 @@ const transactionsSlice = createSlice({
       })
   },
 });
-
+export const {editActive , editInActive} = transactionsSlice.actions
 export default transactionsSlice.reducer

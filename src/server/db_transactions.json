@@ -20,8 +20,8 @@
     },
     {
       "name": "Phone Bill",
+      "amount": "600",
       "type": "expense",
-      "amount": 500,
       "id": 6
     }
   ]
