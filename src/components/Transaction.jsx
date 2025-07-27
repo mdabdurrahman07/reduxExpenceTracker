@@ -1,12 +1,13 @@
 import editImage from "../assets/images/edit.svg"
 import deleteImage from "../assets/images/delete.svg"
 
-const Transaction = () => {
+const Transaction = ({transactions}) => {
+  const {amount} = transactions || {}
     return (
          <li className="transaction income">
             <p>Earned this month</p>
             <div className="right">
-              <p>৳ 100</p>
+              <p>৳ {amount}</p>
               <button className="link">
                 <img className="icon" src={editImage} />
               </button>

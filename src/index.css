@@ -220,6 +220,10 @@ label {
         margin: 10px auto;
     }
 
+    .error{
+        color: red;
+    }
+
     * {
         font-size: 95% !important;
     }
