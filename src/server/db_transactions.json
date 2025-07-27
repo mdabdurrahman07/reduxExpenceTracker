@@ -7,16 +7,10 @@
       "id": 3
     },
     {
-      "name": "Internet Bill",
+      "name": "Gas Bill",
       "type": "expense",
-      "amount": 600,
+      "amount": 1920,
       "id": 4
-    },
-    {
-      "name": "Phone Bill",
-      "amount": "600",
-      "type": "expense",
-      "id": 6
     }
   ]
 }
