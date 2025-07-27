@@ -7,6 +7,12 @@ const Form = () => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("");
+
+  const reset = () => {
+    setAmount("");
+    setName("");
+    setType("");
+  };
   const handleCreate = (e) => {
     e.preventDefault();
     dispatch(
@@ -16,6 +22,7 @@ const Form = () => {
         amount: Number(amount),
       })
     );
+    reset();
   };
   const { isLoading, isError } = useSelector((state) => state.transactions);
   return (
@@ -29,7 +36,7 @@ const Form = () => {
             type="text"
             required
             name="name"
-            placeholder="Enter salary"
+            placeholder="Enter Income or Expense"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />

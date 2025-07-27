@@ -4,7 +4,25 @@
       "name": "Salary",
       "type": "income",
       "amount": 11000,
-      "id": 1
+      "id": 3
+    },
+    {
+      "name": "Internet Bill",
+      "type": "expense",
+      "amount": 600,
+      "id": 4
+    },
+    {
+      "name": "Lease",
+      "type": "income",
+      "amount": 2500,
+      "id": 5
+    },
+    {
+      "name": "Phone Bill",
+      "type": "expense",
+      "amount": 500,
+      "id": 6
     }
   ]
 }

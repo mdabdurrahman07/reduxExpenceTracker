@@ -1,12 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Transaction from "./Transaction";
 import Loading from "../utils/Loading";
-
+import { useEffect } from "react";
+import { fetchTransactions } from "../redux/features/transactions/transactionsSlice";
 
 const Transactions = () => {
-  const {isLoading , isError, error, transactions} = useSelector((state) => state.transactions)
+  const dispatch = useDispatch();
 
-    let content;
+  const { isLoading, isError, error, transactions } = useSelector(
+    (state) => state.transactions
+  );
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, [dispatch]);
+
+  let content;
 
   if (isLoading) {
     content = <Loading />;
@@ -16,7 +25,7 @@ const Transactions = () => {
     content = <div className="col-span-12">No transactions found</div>;
   } else {
     content = transactions.map((transaction) => (
-      <Transaction key={transaction.id} transactions={transaction}/>
+      <Transaction key={transaction.id} transactions={transaction} />
     ));
   }
   return (
@@ -24,9 +33,7 @@ const Transactions = () => {
       <p className="second_heading">Your Transactions:</p>
 
       <div className="container_of_list_of_transactions">
-        <ul>
-         {content}
-        </ul>
+        <ul>{content}</ul>
       </div>
     </div>
   );
