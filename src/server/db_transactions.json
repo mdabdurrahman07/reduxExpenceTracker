@@ -13,12 +13,6 @@
       "id": 4
     },
     {
-      "name": "Lease",
-      "type": "income",
-      "amount": 2500,
-      "id": 5
-    },
-    {
       "name": "Phone Bill",
       "amount": "600",
       "type": "expense",
